@@ -27,4 +27,5 @@ def pcs_control():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # 데이터베이스 테이블 생성 (필요 시)
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=원하는_포트번호, debug=True)  # 원하는 포트번호로 변경
+
