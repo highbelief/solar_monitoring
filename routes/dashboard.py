@@ -23,4 +23,3 @@ def current_power():
     current_data = SimulationData.query.order_by(SimulationData.observation_time.desc()).limit(10).all()
     current_data_list = [{'time': data.observation_time.strftime('%Y-%m-%d %H:%M:%S'), 'value': data.power_generated} for data in current_data]
     return jsonify(current_data_list)
-
