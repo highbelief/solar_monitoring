@@ -2,7 +2,7 @@
 from flask import Flask, redirect, url_for
 from config import Config
 from models import db
-from routes import init_app  # 블루프린트 초기화 함수 가져오기
+from routes import init_app
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -14,7 +14,7 @@ init_app(app)
 # 기본 경로 리디렉션 설정 (대시보드 페이지로 이동)
 @app.route('/')
 def home():
-    return redirect(url_for('dashboard.dashboard'))  # 대시보드 페이지로 리디렉트
+    return redirect(url_for('dashboard.dashboard'))  # 정확한 경로 지정
 
 if __name__ == '__main__':
     with app.app_context():

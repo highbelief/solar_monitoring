@@ -1,10 +1,13 @@
+/* 전체 레이아웃 */
 body {
     display: flex;
     font-family: Arial, sans-serif;
     margin: 0;
 }
+
+/* 좌측 사이드바 스타일 */
 .sidebar {
-    width: 200px;
+    width: 250px; /* 사이드바 너비 증가 */
     background-color: #333;
     color: white;
     height: 100vh;
@@ -13,16 +16,45 @@ body {
     align-items: center;
     padding-top: 20px;
 }
+
+.sidebar h2 {
+    font-size: 1.5em; /* 시스템 이름 크기 증가 */
+    margin-bottom: 30px;
+    text-align: center;
+}
+
 .sidebar a {
     color: white;
     text-decoration: none;
     margin: 15px 0;
     font-size: 18px;
 }
+
 .sidebar a:hover {
     color: #ddd;
 }
+
+/* 콘텐츠 영역 스타일 */
 .content {
+    display: flex;
     flex-grow: 1;
     padding: 20px;
+    justify-content: space-between; /* 그래프와 예측 수치 영역을 양쪽에 배치 */
+}
+
+/* 현재 발전량 그래프 스타일 */
+#currentPowerChart {
+    width: 100%; /* 그래프 너비 100%로 설정 */
+    height: 400px; /* 그래프 높이 증가 */
+}
+
+/* 예측 수치 영역 */
+.predictions {
+    width: 30%; /* 예측 수치 영역의 너비를 30%로 설정 */
+    padding-left: 20px;
+}
+
+.prediction-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
 }

@@ -10,33 +10,35 @@
 
     <!-- 좌측 사이드바 -->
     <div class="sidebar">
-        <h2>520kW급 발전소 모니터링</h2>
+        <h3>520kW급 발전소 모니터링</h3>
         <a href="/dashboard">대시보드</a>
         <a href="/user_management">유저 관리</a>
         <a href="/pcs_control">PCS 제어판</a>
         <a href="/logs">로그</a>
     </div>
 
-    <!-- 현재 발전량 그래프 -->
-    <div>
-        <h2>현재 발전량 (그래프)</h2>
-        <canvas id="currentPowerChart"></canvas>
-    </div>
-
-    <!-- 예측 수치 표시 -->
-    <div class="predictions">
-        <h2>예측 발전량 (수치)</h2>
-        {% for row in predictions_data %}
-        <div class="prediction-item">
-            <strong>{{ row.observation_time.strftime('%Y-%m-%d %H:%M:%S') }}</strong><br>
-            예측 발전량: {{ row.predicted_power_generated | int }} kW<br>
-            예측 배터리 상태: {{ row.predicted_battery_level | int }}%<br>
-            장비 상태: {{ row.predicted_equipment_status }}
+    <!-- 콘텐츠 영역 -->
+    <div class="content">
+        <!-- 현재 발전량 그래프 -->
+        <div style="width: 65%;"> <!-- 그래프 영역을 더 넓게 -->
+            <h2>현재 발전량 (그래프)</h2>
+            <canvas id="currentPowerChart"></canvas>
         </div>
-        {% endfor %}
+
+        <!-- 예측 수치 표시 -->
+        <div class="predictions">
+            <h2>예측 발전량 (수치)</h2>
+            {% for row in predictions_data %}
+            <div class="prediction-item">
+                <strong>{{ row.observation_time.strftime('%Y-%m-%d %H:%M:%S') }}</strong><br>
+                예측 발전량: {{ row.predicted_power_generated | int }} kW<br>
+                예측 배터리 상태: {{ row.predicted_battery_level | int }}%<br>
+                장비 상태: {{ row.predicted_equipment_status }}
+            </div>
+            {% endfor %}
+        </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script>
         const ctx = document.getElementById('currentPowerChart').getContext('2d');
         let currentPowerChart = new Chart(ctx, {
@@ -70,4 +72,3 @@
 
 </body>
 </html>
-

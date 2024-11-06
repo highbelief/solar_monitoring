@@ -1,12 +1,10 @@
-# routes/dashboard.py
 from flask import Blueprint, render_template, jsonify
 from models import SimulationData, Predictions
 from datetime import datetime, timedelta
 
 dashboard_bp = Blueprint('dashboard', __name__)
 
-
-@dashboard_bp.route('/dashboard')
+@dashboard_bp.route('/')  # URL을 /dashboard로 매핑
 def dashboard():
     # 다음 날의 날짜를 계산
     tomorrow = datetime.now().date() + timedelta(days=1)
@@ -18,7 +16,6 @@ def dashboard():
     ).all()
 
     return render_template('dashboard.html', predictions_data=predictions_data)
-
 
 @dashboard_bp.route('/api/current_power')
 def current_power():
