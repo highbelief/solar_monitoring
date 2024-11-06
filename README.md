@@ -41,13 +41,24 @@ solar_monitoring/
 ├── routes/                 # 페이지별 라우트를 정의하는 폴더
 │   ├── __init__.py         # 블루프린트 초기화 파일
 │   ├── dashboard.py        # 대시보드 페이지 라우트
-│   └── logs.py             # 로그 페이지 라우트
+│   ├── logs.py             # 로그 페이지 라우트
+│   ├── user_management.py  # 유저 관리 페이지 라우트
+│   └── pcs_control.py      # PCS 제어판 페이지 라우트
+│
 ├── templates/              # HTML 템플릿 파일 저장 폴더
 │   ├── dashboard.html      # 대시보드 페이지 템플릿
-│   └── logs.html           # 로그 페이지 템플릿
+│   ├── logs.html           # 로그 페이지 템플릿
+│   ├── user_management.html# 유저 관리 페이지 템플릿
+│   └── pcs_control.html    # PCS 제어판 페이지 템플릿
+│
 ├── static/                 # 정적 파일 저장 폴더 (CSS, JS, 이미지 등)
-│   └── style.css           # CSS 파일 예제
+│   ├── dashboard.css       # 대시보드 페이지용 CSS 파일
+│   ├── logs.css            # 로그 페이지용 CSS 파일
+│   ├── user_management.css # 유저 관리 페이지용 CSS 파일
+│   └── pcs_control.css     # PCS 제어판 페이지용 CSS 파일
+│
 └── requirements.txt        # 필요한 패키지 목록
+
 ```
 
 ### 파일 설명
