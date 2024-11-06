@@ -3,6 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
 }
+
 .sidebar {
     width: 200px;
     background-color: #333;
@@ -13,19 +14,47 @@ body {
     align-items: center;
     padding-top: 20px;
 }
+
 .sidebar a {
     color: white;
     text-decoration: none;
     margin: 15px 0;
     font-size: 18px;
 }
+
 .sidebar a:hover {
     color: #ddd;
 }
+
 .content {
     flex-grow: 1;
     padding: 20px;
 }
+
 .table-container {
     margin-top: 20px;
+    border: 1px solid #ddd;  /* 박스 경계선 추가 */
+    border-radius: 5px;      /* 모서리 둥글게 */
+    overflow: hidden;         /* 자식 요소가 박스를 넘어가는 것을 방지 */
+}
+
+.table-scroll {
+    max-height: 400px;        /* 원하는 높이 설정 */
+    overflow-y: auto;         /* 세로 스크롤 추가 */
+    border-top: 1px solid #ddd;  /* 위쪽 경계선 */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f4f4f4;
 }

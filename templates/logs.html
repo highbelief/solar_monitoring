@@ -18,6 +18,8 @@
 
     <!-- 콘텐츠 영역 -->
     <div class="content">
+        <h1>로그 페이지</h1>
+
         <!-- 날짜 선택 폼 -->
         <form method="POST" class="date-form">
             <label for="date">날짜 선택:</label>
@@ -25,56 +27,58 @@
             <button type="submit">조회</button>
         </form>
 
-        <!-- Simulation Data 테이블 -->
         <div class="table-container">
             <h2>Simulation Data</h2>
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>관측 시간</th>
-                    <th>기온 (°C)</th>
-                    <th>일사량 (W/m²)</th>
-                    <th>습도 (%)</th>
-                    <th>구름량 (%)</th>
-                    <th>장비 상태</th>
-                    <th>발전량 (kW)</th>
-                </tr>
-                {% for row in simulation_data %}
-                <tr>
-                    <td>{{ row.id }}</td>
-                    <td>{{ row.observation_time }}</td>
-                    <td>{{ row.temperature }}</td>
-                    <td>{{ row.solar_irradiance }}</td>
-                    <td>{{ row.humidity }}</td>
-                    <td>{{ row.cloud_coverage }}</td>
-                    <td>{{ row.equipment_status }}</td>
-                    <td>{{ row.power_generated }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+            <div class="table-scroll">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>관측 시간</th>
+                        <th>기온 (°C)</th>
+                        <th>일사량 (W/m²)</th>
+                        <th>습도 (%)</th>
+                        <th>구름량 (%)</th>
+                        <th>장비 상태</th>
+                        <th>발전량 (kW)</th>
+                    </tr>
+                    {% for row in simulation_data %}
+                    <tr>
+                        <td>{{ row.id }}</td>
+                        <td>{{ row.observation_time }}</td>
+                        <td>{{ row.temperature }}</td>
+                        <td>{{ row.solar_irradiance }}</td>
+                        <td>{{ row.humidity }}</td>
+                        <td>{{ row.cloud_coverage }}</td>
+                        <td>{{ row.equipment_status }}</td>
+                        <td>{{ row.power_generated }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
 
-        <!-- Predictions Data 테이블 -->
         <div class="table-container">
             <h2>Predictions Data</h2>
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>관측 시간</th>
-                    <th>예측 발전량 (kW)</th>
-                    <th>예측 배터리 상태 (%)</th>
-                    <th>예측 장비 상태</th>
-                </tr>
-                {% for row in predictions_data %}
-                <tr>
-                    <td>{{ row.id }}</td>
-                    <td>{{ row.observation_time }}</td>
-                    <td>{{ row.predicted_power_generated }}</td>
-                    <td>{{ row.predicted_battery_level }}</td>
-                    <td>{{ row.predicted_equipment_status }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+            <div class="table-scroll">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>관측 시간</th>
+                        <th>예측 발전량 (kW)</th>
+                        <th>예측 배터리 상태 (%)</th>
+                        <th>예측 장비 상태</th>
+                    </tr>
+                    {% for row in predictions_data %}
+                    <tr>
+                        <td>{{ row.id }}</td>
+                        <td>{{ row.observation_time }}</td>
+                        <td>{{ row.predicted_power_generated }}</td>
+                        <td>{{ row.predicted_battery_level }}</td>
+                        <td>{{ row.predicted_equipment_status }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
     </div>
 

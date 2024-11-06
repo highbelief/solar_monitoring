@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 logs_bp = Blueprint('logs', __name__)
 
 
-@logs_bp.route('/logs', methods=['GET', 'POST'])
+@logs_bp.route('/', methods=['GET', 'POST'])
 def logs():
     # 기본 날짜를 오늘로 설정하고, 선택된 날짜가 있으면 해당 날짜 사용
     selected_date = request.form.get("date", datetime.now().strftime('%Y-%m-%d'))
