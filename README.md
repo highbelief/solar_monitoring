@@ -41,25 +41,76 @@ solar_monitoring/
 ├── routes/                 # 페이지별 라우트를 정의하는 폴더
 │   ├── __init__.py         # 블루프린트 초기화 파일
 │   ├── dashboard.py        # 대시보드 페이지 라우트
-│   └── logs.py             # 로그 페이지 라우트
+│   ├── logs.py             # 로그 페이지 라우트
+│   ├── user_management.py  # 유저 관리 페이지 라우트
+│   └── pcs_control.py      # PCS 제어판 페이지 라우트
+│
 ├── templates/              # HTML 템플릿 파일 저장 폴더
 │   ├── dashboard.html      # 대시보드 페이지 템플릿
-│   └── logs.html           # 로그 페이지 템플릿
+│   ├── logs.html           # 로그 페이지 템플릿
+│   ├── user_management.html# 유저 관리 페이지 템플릿
+│   └── pcs_control.html    # PCS 제어판 페이지 템플릿
+│
 ├── static/                 # 정적 파일 저장 폴더 (CSS, JS, 이미지 등)
-│   └── style.css           # CSS 파일 예제
+│   ├── dashboard.css       # 대시보드 페이지용 CSS 파일
+│   ├── logs.css            # 로그 페이지용 CSS 파일
+│   ├── user_management.css # 유저 관리 페이지용 CSS 파일
+│   └── pcs_control.css     # PCS 제어판 페이지용 CSS 파일
+│
 └── requirements.txt        # 필요한 패키지 목록
+
 ```
+---
 
 ### 파일 설명
 
-- `app.py` - Flask 애플리케이션을 초기화하고 블루프린트를 등록하는 메인 파일입니다.
-- `config.py` - MySQL 데이터베이스 설정 및 기타 설정이 포함된 파일입니다.
-- `models.py` - 데이터베이스 테이블(관측 데이터 및 예측 데이터)을 정의한 파일입니다.
-- `routes/dashboard.py` - 대시보드 페이지를 담당하는 라우트로, 실시간 그래프와 예측 데이터를 제공합니다.
-- `routes/logs.py` - 로그 페이지를 담당하는 라우트로, 관측 및 예측 데이터를 표로 제공합니다.
-- `templates/dashboard.html` - 대시보드 페이지의 HTML 템플릿으로, 실시간 그래프와 예측 수치가 표시됩니다.
-- `templates/logs.html` - 로그 페이지의 HTML 템플릿으로, 관측 데이터와 예측 데이터를 표로 표시합니다.
-- `requirements.txt` - 프로젝트 실행에 필요한 모든 패키지 목록입니다.
+- **app.py**  
+  Flask 애플리케이션을 초기화하고 블루프린트를 등록하는 메인 파일입니다. 모든 설정을 로드하고, 각 페이지의 라우트를 연결합니다.
+
+- **config.py**  
+  MySQL 데이터베이스 설정 및 기타 환경 설정이 포함된 파일입니다. 데이터베이스 연결 정보와 Flask 설정을 관리합니다.
+
+- **models.py**  
+  데이터베이스 테이블(관측 데이터 및 예측 데이터)을 정의한 파일입니다. SQLAlchemy를 사용하여 데이터베이스 모델을 구성합니다.
+
+- **routes/dashboard.py**  
+  대시보드 페이지를 담당하는 라우트로, 실시간 발전량 그래프와 다음 날의 예측 데이터를 제공합니다.
+
+- **routes/logs.py**  
+  로그 페이지를 담당하는 라우트로, 관측 데이터와 예측 데이터를 표 형식으로 제공합니다. 필터링 및 정렬 기능을 추가할 수 있습니다.
+
+- **routes/user_management.py**  
+  유저 관리 페이지를 담당하는 라우트로, 사용자 계정을 관리할 수 있는 기능을 제공합니다. 기본 기능으로 사용자 목록 표시와 추가/삭제 기능이 포함될 수 있습니다.
+
+- **routes/pcs_control.py**  
+  PCS 제어판 페이지를 담당하는 라우트로, 발전 설비의 상태 모니터링 및 제어 기능을 제공합니다.
+
+- **templates/dashboard.html**  
+  대시보드 페이지의 HTML 템플릿으로, 실시간 발전량 그래프와 예측 수치를 시각적으로 표시합니다.
+
+- **templates/logs.html**  
+  로그 페이지의 HTML 템플릿으로, 관측 데이터와 예측 데이터를 표 형식으로 보여줍니다. 날짜별로 필터링하고 정렬할 수 있습니다.
+
+- **templates/user_management.html**  
+  유저 관리 페이지의 HTML 템플릿으로, 사용자 목록과 관리 기능을 제공합니다. 
+
+- **templates/pcs_control.html**  
+  PCS 제어판 페이지의 HTML 템플릿으로, 발전 설비의 상태 정보를 표시하고 제어할 수 있는 UI를 제공합니다.
+
+- **static/dashboard.css**  
+  대시보드 페이지의 스타일을 정의한 CSS 파일입니다. 그래프와 예측 수치의 레이아웃과 스타일을 설정합니다.
+
+- **static/logs.css**  
+  로그 페이지의 스타일을 정의한 CSS 파일입니다. 표의 스타일과 배치를 조정합니다.
+
+- **static/user_management.css**  
+  유저 관리 페이지의 스타일을 정의한 CSS 파일입니다. 사용자 목록과 관리 기능의 UI를 꾸밉니다.
+
+- **static/pcs_control.css**  
+  PCS 제어판 페이지의 스타일을 정의한 CSS 파일입니다. 설비 상태와 제어 기능 UI의 레이아웃과 스타일을 설정합니다.
+
+- **requirements.txt**  
+  프로젝트 실행에 필요한 모든 Python 패키지 목록입니다. `pip install -r requirements.txt` 명령으로 설치할 수 있습니다.
 
 ---
 
