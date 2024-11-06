@@ -3,52 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>대시보드</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script> <!-- Chart.js -->
-    <style>
-        body {
-            display: flex;
-            font-family: Arial, sans-serif;
-            margin: 0;
-        }
-        .sidebar {
-            width: 200px;
-            background-color: #333;
-            color: white;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 20px;
-        }
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            margin: 15px 0;
-            font-size: 18px;
-        }
-        .sidebar a:hover {
-            color: #ddd;
-        }
-        .content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: row;
-            padding: 20px;
-        }
-        #currentPowerChart {
-            width: 75%;
-            height: 500px;
-            max-width: 1000px;
-        }
-        .predictions {
-            margin-left: 20px;
-            width: 20%;
-        }
-        .prediction-item {
-            padding: 5px 0;
-            border-bottom: 1px solid #ddd;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
 </head>
 <body>
 
@@ -56,33 +12,31 @@
     <div class="sidebar">
         <h2>520kW급 발전소 모니터링</h2>
         <a href="/dashboard">대시보드</a>
-        <a href="/logs">로그</a>
         <a href="/user_management">유저 관리</a>
         <a href="/pcs_control">PCS 제어판</a>
+        <a href="/logs">로그</a>
     </div>
 
-    <!-- 콘텐츠 영역 -->
-    <div class="content">
-        <!-- 현재 발전량 그래프 -->
-        <div>
-            <h2>현재 발전량 (그래프)</h2>
-            <canvas id="currentPowerChart"></canvas>
-        </div>
-
-        <!-- 예측 수치 표시 -->
-        <div class="predictions">
-            <h2>예측 발전량 (수치)</h2>
-            {% for row in predictions_data %}
-            <div class="prediction-item">
-                <strong>{{ row.observation_time.strftime('%Y-%m-%d %H:%M:%S') }}</strong><br>
-                예측 발전량: {{ row.predicted_power_generated | int }} kW<br>
-                예측 배터리 상태: {{ row.predicted_battery_level | int }}%<br>
-                장비 상태: {{ row.predicted_equipment_status }}
-            </div>
-            {% endfor %}
-        </div>
+    <!-- 현재 발전량 그래프 -->
+    <div>
+        <h2>현재 발전량 (그래프)</h2>
+        <canvas id="currentPowerChart"></canvas>
     </div>
 
+    <!-- 예측 수치 표시 -->
+    <div class="predictions">
+        <h2>예측 발전량 (수치)</h2>
+        {% for row in predictions_data %}
+        <div class="prediction-item">
+            <strong>{{ row.observation_time.strftime('%Y-%m-%d %H:%M:%S') }}</strong><br>
+            예측 발전량: {{ row.predicted_power_generated | int }} kW<br>
+            예측 배터리 상태: {{ row.predicted_battery_level | int }}%<br>
+            장비 상태: {{ row.predicted_equipment_status }}
+        </div>
+        {% endfor %}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script>
         const ctx = document.getElementById('currentPowerChart').getContext('2d');
         let currentPowerChart = new Chart(ctx, {
@@ -116,3 +70,4 @@
 
 </body>
 </html>
+
