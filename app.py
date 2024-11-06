@@ -3,13 +3,15 @@ from flask import Flask, redirect, url_for
 from config import Config
 from models import db
 from routes import init_app
-
+from routes.dashboard import dashboard_bp
 app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
 
 # 블루프린트 초기화
 init_app(app)
+
+app.register_blueprint(dashboard_bp)  # 대시보드 블루프린트 등록
 
 # 기본 경로 리디렉션 설정 (대시보드 페이지로 이동)
 @app.route('/')
