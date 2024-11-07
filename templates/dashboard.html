@@ -40,44 +40,40 @@
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const ctx = document.getElementById('currentPowerChart').getContext('2d');
-        let currentPowerChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [],
-                datasets: [{
-                    label: '현재 발전량 (kW)',
-                    data: [],
-                    borderColor: 'blue',
-                    fill: false
-                }]
-            }
-        });
+    // Chart.js로 발전량 데이터를 표시
+    const ctx = document.getElementById('currentPowerChart').getContext('2d');
+    let currentPowerChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: '현재 발전량 (kW)',
+                data: [],
+                borderColor: 'blue',
+                fill: false
+            }]
+        }
+    });
 
-        function updateCurrentPowerChart() {
-              fetch('/api/current_power')
-             .then(response => {
-                // 응답이 성공적이지 않은 경우 오류 처리
-                 if (!response.ok) {
-                    throw new Error('Network response was not ok: ' + response.statusText);
-                }
-                 return response.json();
-             })
+    // /api/current_power에서 데이터 가져와 그래프 업데이트
+    function updateCurrentPowerChart() {
+        fetch('/api/current_power')
+            .then(response => response.json())
             .then(data => {
+                // 최신 데이터를 우측에 표시하기 위해 데이터를 역순으로 정렬
                 const labels = data.map(item => item.time).reverse();
                 const values = data.map(item => item.value).reverse();
-                 currentPowerChart.data.labels = labels;
-                 currentPowerChart.data.datasets[0].data = values;
-                 currentPowerChart.update();
-             })
-             .catch(error => console.error("Error fetching data:", error));
-        }
 
+                // 그래프 데이터 업데이트
+                currentPowerChart.data.labels = labels;
+                currentPowerChart.data.datasets[0].data = values;
+                currentPowerChart.update();
+            })
+            .catch(error => console.error("Error fetching data:", error));
+    }
 
-        updateCurrentPowerChart();  // 데이터 업데이트 호출
-    });
+    // 페이지 로드 시 그래프 데이터 로드
+    updateCurrentPowerChart();
 </script>
-
 </body>
 </html>
